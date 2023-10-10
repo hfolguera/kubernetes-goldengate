@@ -1,5 +1,5 @@
 # kubernetes-goldengate
-Deploy an Oracle Golden Gate Free 23c on kubernetes.
+Deploy an Oracle Golden Gate Free 23c instance on kubernetes.
 
 ## Table of contents
 - [Introduction](#introduction)
