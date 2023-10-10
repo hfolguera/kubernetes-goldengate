@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goldengate
+  namespace: goldengate
+  labels:
+    app: goldengate   
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0 # Remove old replicasets 
+  selector:
+    matchLabels:
+      app: goldengate
+  template:
+    metadata:
+      labels:
+        app: goldengate
+    spec:
+      containers:
+      - name: goldengate
+        image: container-registry.oracle.com/goldengate/goldengate-free:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
+        env:
+        - name: OGG_ADMIN
+          value: "oggadmin"
+        - name: OGG_ADMIN_PWD
+          valueFrom:
+            secretKeyRef:
+              name: oggadmin
+              key: ogg_admin_pwd
+        - name: OGG_DEPLOYMENT
+          value: "Local"
+# TODO
+#        volumeMounts:
+#        - mountPath: /u02
+#          name: goldengate-pv
+#          subPath: persistent
+#        - mountPath: /u03
+#          name: goldengate-pv
+#          subPath: temporary
+#      volumes:
+#      - name: goldengate-pv
+#        persistentVolumeClaim:
+#          claimName: goldengate-pvc
