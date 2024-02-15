@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: goldengate
   namespace: goldengate
-  annotations:
-    metallb.universe.tf/address-pool: goldengate-pool
 spec:
   ports:
     - name: http
@@ -18,4 +16,3 @@ spec:
   selector:
     app: goldengate
   sessionAffinity: None
-  type: LoadBalancer

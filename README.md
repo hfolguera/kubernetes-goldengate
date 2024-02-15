@@ -29,7 +29,7 @@ Follow the next steps to deploy Oracle Golden Gate 23c Free:
 
 ### Create namespace
 ```
-kubectl -f goldengate-namespace.yaml
+kubectl apply -f goldengate-namespace.yaml
 ```
 
 ### Create secret
@@ -40,12 +40,12 @@ kubectl create secret generic oggadmin --from-literal=ogg_admin_pwd='xBvPi72VwW/
 
 ### Create deployment
 ```
-kubectl -f goldengate-deployment.yaml
+kubectl apply -f goldengate-deployment.yaml
 ```
 
 ### Create service
 ```
-kubectl -f goldengate-service.yaml
+kubectl apply -f goldengate-service.yaml
 ```
 
 ## Upgrade
